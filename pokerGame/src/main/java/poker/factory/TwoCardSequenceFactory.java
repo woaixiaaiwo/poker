@@ -8,7 +8,7 @@ import poker.cards.enums.CardEnum;
 
 import java.util.List;
 
-public class TwoCardSequenceFactory implements SequenceFactory{
+public class TwoCardSequenceFactory extends SequenceFactory{
 
     @Override
     public PokerSequence getPokerSequence(List<Card> cardList) {

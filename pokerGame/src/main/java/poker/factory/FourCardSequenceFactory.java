@@ -8,29 +8,30 @@ import poker.cards.enums.CardEnum;
 
 import java.util.*;
 
-public class FourCardSequenceFactory implements SequenceFactory{
+public class FourCardSequenceFactory extends SequenceFactory{
 
     @Override
     public PokerSequence getPokerSequence(List<Card> cardList) {
-        if(cardList.size() == 4){
-            Map<Card,Integer> tmp = new HashMap<>();
-            for(Card card:cardList){
-                Integer num = tmp.get(card);
-                if(num == null){
-                    tmp.put(card,1);
-                }else {
-                    tmp.put(card,num+1);
-                }
-            }
-            Map<Integer,Card> map = new HashMap<>();
-            for(Map.Entry<Card,Integer> entry:tmp.entrySet()){
-                map.put(entry.getValue(),entry.getKey());
-            }
-            if(map.size() == 1){
-                return new BoomCard(cardList);
-            }
-
+        if(cardList.size() == 8){
+            List<Integer> sequenceNumList = new ArrayList<>();
+            Map<Integer,List<Integer>> map = new HashMap<>();
+            calculate(cardList,sequenceNumList,map);
+            System.out.println(sequenceNumList);
+            System.out.println(map);
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        List<Card> list = new ArrayList<>();
+        list.add(new Card("3",3));
+        list.add(new Card("3",3));
+        list.add(new Card("3",3));
+        list.add(new Card("4",4));
+        list.add(new Card("4",4));
+        list.add(new Card("4",4));
+        list.add(new Card("5",5));
+        list.add(new Card("5",5));
+        new FourCardSequenceFactory().getPokerSequence(list);
     }
 }
