@@ -76,6 +76,6 @@ public class ThirdCardSequenceParser extends SequenceParser {
                 }
             }
         }
-        return null;
+        throw new NotMatchException(cardList);
     }
 }
