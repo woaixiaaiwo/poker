@@ -1,7 +1,6 @@
-package poker.cards.enums;
+package poker.sequence.enums;
 
 public enum CardEnum {
-
 
     Three("3",0),
     Four("4",1),
