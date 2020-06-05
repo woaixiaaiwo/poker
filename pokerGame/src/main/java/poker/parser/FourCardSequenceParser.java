@@ -24,7 +24,7 @@ public class FourCardSequenceParser extends SequenceParser {
             if(sequenceNumList.get(1) != 2){
                 throw new NotMatchException(cardList);
             }
-            return new FourTwoCard(cardList.get(0).getCardNumber());
+            return new FourTwoCard(cardList.get(0).getCardNumber(),cardList.get(1).getCardNumber());
         }
         //4带2对
         if(cardList.size() == 8){
@@ -33,7 +33,7 @@ public class FourCardSequenceParser extends SequenceParser {
             if(doubleCardList == null || doubleCardList.size() != 2){
                 throw new NotMatchException(cardList);
             }
-            return new FourTwoDoubleCard(cardList.get(0).getCardNumber());
+            return new FourTwoDoubleCard(cardList.get(0).getCardNumber(),doubleCardList);
         }
         throw new NotMatchException(cardList);
     }

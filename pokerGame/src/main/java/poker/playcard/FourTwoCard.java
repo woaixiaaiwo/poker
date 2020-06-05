@@ -3,6 +3,7 @@ package poker.playcard;
 import poker.playcard.base.PlayCard;
 import poker.sequence.base.Card;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,10 +11,13 @@ import java.util.List;
  */
 public class FourTwoCard extends PlayCard {
 
-    private Integer baseNum;
+    private Integer boonNum;
 
-    public FourTwoCard(Integer baseNum) {
-        this.baseNum = baseNum;
+    private Integer singleNum;
+
+    public FourTwoCard(Integer boonNum, Integer singleNum) {
+        this.boonNum = boonNum;
+        this.singleNum = singleNum;
     }
 
     @Override
@@ -23,6 +27,12 @@ public class FourTwoCard extends PlayCard {
 
     @Override
     public List<Card> getCardList() {
-        return null;
+        List<Card> list = new ArrayList<>();
+        for(int i=0;i<4;i++){
+            list.add(new Card(boonNum));
+        }
+        list.add(new Card(singleNum));
+        list.add(new Card(singleNum));
+        return list;
     }
 }

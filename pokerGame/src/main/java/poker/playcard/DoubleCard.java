@@ -2,7 +2,9 @@ package poker.playcard;
 
 import poker.playcard.base.PlayCard;
 import poker.sequence.base.Card;
+import poker.sequence.enums.CardEnum;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +25,10 @@ public class DoubleCard extends PlayCard {
 
     @Override
     public List<Card> getCardList() {
-        return null;
+        List<Card> list = new ArrayList<>();
+        for(int i=0;i<2;i++){
+            list.add(new Card(baseNum));
+        }
+        return list;
     }
 }

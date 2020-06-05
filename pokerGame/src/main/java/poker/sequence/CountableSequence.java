@@ -32,6 +32,7 @@ public class CountableSequence {
     protected void refreshInfo(){
         int[] arr = new int[15];
         sequenceNumList = new ArrayList<>();
+        cardNumList = new ArrayList<>();
         sequenceMap = new HashMap<>();
         for(int i=0;i<cardList.size();i++){
             arr[cardList.get(i).getCardNumber()]++;

@@ -1,13 +1,14 @@
 package poker.playcard.base;
 
-import poker.CardDisplayer;
+import poker.display.CardDisplayer;
+import poker.display.DefaultCardDisplayer;
 import poker.sequence.base.Card;
 
 import java.util.List;
 
 public abstract class PlayCard {
 
-    private CardDisplayer cardDisplayer = new CardDisplayer();
+    private CardDisplayer cardDisplayer = new DefaultCardDisplayer();
 
     /**
      * 用于比较牌的大小
@@ -22,6 +23,10 @@ public abstract class PlayCard {
      * 获取card列表
      */
     public abstract List<Card>  getCardList();
+
+    public void setCardDisplayer(CardDisplayer cardDisplayer) {
+        this.cardDisplayer = cardDisplayer;
+    }
 
     /**
      * 显示牌

@@ -3,6 +3,7 @@ package poker.playcard;
 import poker.playcard.base.PlayCard;
 import poker.sequence.base.Card;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +27,10 @@ public class Flush  extends PlayCard {
 
     @Override
     public List<Card> getCardList() {
-        return null;
+        List<Card> list = new ArrayList<>();
+        for(int i=baseNum;i<baseNum+cardNum;i++){
+            list.add(new Card(i));
+        }
+        return list;
     }
 }

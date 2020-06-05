@@ -3,6 +3,10 @@ package poker.parser;
 import poker.OutOfNumberException;
 import poker.playcard.base.PlayCard;
 import poker.sequence.CardSequence;
+import poker.sequence.base.Card;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class SequenceParser {
 
@@ -13,21 +17,41 @@ public abstract class SequenceParser {
         PlayCard playCard = null;
         switch (maxRepeatNum){
             case 1:
-                playCard = SingleCardSequenceParser.parse(cardSequence);
+                playCard = new SingleCardSequenceParser().getPokerSequence(cardSequence);
                 break;
             case 2:
-                playCard = TwoCardSequenceParser.parse(cardSequence);
+                playCard = new TwoCardSequenceParser().getPokerSequence(cardSequence);
                 break;
             case 3:
-                playCard = ThirdCardSequenceParser.parse(cardSequence);
+                playCard = new ThirdCardSequenceParser().getPokerSequence(cardSequence);
                 break;
             case 4:
-                playCard = FourCardSequenceParser.parse(cardSequence);
+                playCard = new FourCardSequenceParser().getPokerSequence(cardSequence);
                 break;
             default:
                 throw new OutOfNumberException(cardSequence.getCardList());
         }
         return playCard;
+    }
+
+
+    public static void main(String[] args) {
+        List<Card> cardList = new ArrayList<>();
+        cardList.add(new Card(0));
+        cardList.add(new Card(0));
+        cardList.add(new Card(0));
+        cardList.add(new Card(1));
+        cardList.add(new Card(1));
+        cardList.add(new Card(1));
+        cardList.add(new Card(2));
+        cardList.add(new Card(2));
+        cardList.add(new Card(2));
+        cardList.add(new Card(9));
+        cardList.add(new Card(9));
+        cardList.add(new Card(9));
+        CardSequence cardSequence = new CardSequence(cardList);
+        PlayCard playCard = parse(cardSequence);
+        System.out.println(playCard.disPlay());
     }
 
 }

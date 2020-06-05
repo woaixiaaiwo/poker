@@ -12,8 +12,11 @@ public class ThirdTwoCard extends PlayCard {
 
     private Integer baseNum;
 
-    public ThirdTwoCard(Integer baseNum) {
+    private Integer doubleNum;
+
+    public ThirdTwoCard(Integer baseNum,Integer doubleNum) {
         this.baseNum = baseNum;
+        this.doubleNum = doubleNum;
     }
 
     @Override
