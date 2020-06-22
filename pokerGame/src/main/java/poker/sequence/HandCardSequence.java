@@ -35,19 +35,56 @@ public class HandCardSequence extends CountableSequence{
         this.cardList = cardList;
     }
 
+    /**
+     * 发牌
+     * @param dealCardList
+     */
     public void dealCard(List<Card> dealCardList){
         for(Card card:dealCardList){
-            cardList.remove(card);
+            cardList.add(card);
         }
         sort();
     }
 
-    public void playCard(List<Card> playList){
+    public String displayCard(){
+        return cardDisplayer.display(cardList);
+    }
+
+    public Integer getCardNum(){
+        return cardList.size();
+    }
+
+    /**
+     * 解析牌
+     * @param str
+     */
+    public List<Card> parsePlayList(String str){
+        List<Card> res = new ArrayList<>();
+        char[] chars = str.toCharArray();
+        int i=0,j=0;
+        while(j < cardList.size()){
+            Card card = cardList.get(j++);
+            if(card.getCardName().equalsIgnoreCase(String.valueOf(chars[i]))){
+                res.add(card);
+                i++;
+                if(res.size() == str.length()){
+                    return res;
+                }
+            }
+        }
+        throw new RuntimeException("输入的序列在手牌中不存在");
+    }
+
+    /**
+     * 出牌
+     * @param playList
+     */
+    public String playCard(List<Card> playList){
         for(Card card:playList){
             cardList.remove(card);
         }
         refreshInfo();
-        cardDisplayer.display(cardList);
+        return cardDisplayer.display(cardList);
     }
 
     public void setCardDisplayer(CardDisplayer cardDisplayer) {
@@ -64,21 +101,24 @@ public class HandCardSequence extends CountableSequence{
             Collections.sort(cardList, new Comparator<Card>() {
                 @Override
                 public int compare(Card o1, Card o2) {
-                    return o2.getCardNumber() - o1.getCardNumber();
+                    return o1.getCardNumber() - o2.getCardNumber();
                 }
             });
         }
         if(sortType == SORT_BY_COUNT){
             refreshInfo();
             cardList.clear();
-            for(Integer integer:cardNumList){
+            for(Integer integer:sequenceNumList){
                 List<Integer> cardNums = sequenceMap.get(integer);
-                for(Integer cardNum:cardNums){
-                    cardList.add(new Card(cardNum));
+                if(cardNums != null){
+                    for(Integer cardNum:cardNums){
+                        for(int i=0;i<integer;i++){
+                            cardList.add(new Card(cardNum));
+                        }
+                    }
                 }
             }
         }
-        cardDisplayer.display(cardList);
     }
 
 }

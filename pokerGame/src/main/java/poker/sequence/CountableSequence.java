@@ -29,7 +29,7 @@ public class CountableSequence {
      */
     protected Map<Integer,List<Integer>> sequenceMap;
 
-    protected void refreshInfo(){
+    public void refreshInfo(){
         int[] arr = new int[15];
         sequenceNumList = new ArrayList<>();
         cardNumList = new ArrayList<>();
@@ -48,7 +48,9 @@ public class CountableSequence {
                 }
                 list.add(i);
                 sequenceMap.put(arr[i],list);
-                sequenceNumList.add(arr[i]);
+                if(!sequenceNumList.contains(arr[i])){
+                    sequenceNumList.add(arr[i]);
+                }
             }
         }
         Collections.sort(sequenceNumList,new Comparator<Integer>() {

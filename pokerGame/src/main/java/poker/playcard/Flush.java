@@ -1,7 +1,9 @@
 package poker.playcard;
 
 import poker.playcard.base.PlayCard;
+import poker.sequence.CardSequence;
 import poker.sequence.base.Card;
+import poker.sequence.enums.CardEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,44 @@ public class Flush  extends PlayCard {
 
     @Override
     public Boolean greaterThan(PlayCard o) {
-        return null;
+        if(o instanceof Flush){
+            Flush flush = (Flush)o;
+            return (this.cardNum == flush.cardNum) && (this.baseNum > flush.baseNum);
+        }
+        return false;
+    }
+
+    @Override
+    public List<List<Card>> doSearchSuggest(List<Card> cardList, CardSequence cardSequence) {
+        int i=0,nextBegin=0;
+        List<List<Card>> res = new ArrayList<>();
+        List<Card> flushCard = new ArrayList<>();
+        while(i < cardList.size()){
+            Card card = cardList.get(i++);
+            if(card.getCardNumber() > this.baseNum){
+                if(flushCard.size() > 0){
+                    if((card.getCardNumber() - flushCard.get(flushCard.size() - 1).getCardNumber() == 1) &&
+                        card.getCardNumber() >= CardEnum.Three.getCardNum() && card.getCardNumber() <= CardEnum.Ace.getCardNum()){
+                        flushCard.add(card);
+                        if(flushCard.size() == this.cardNum){
+                            res.add(new ArrayList<Card>(flushCard));
+                            flushCard.clear();
+                            i = nextBegin;
+                        }
+                    }
+                }else {
+                    flushCard.add(card);
+                    nextBegin = i;
+                    while(nextBegin < cardList.size() && cardList.get(nextBegin).getCardNumber().equals(card.getCardNumber())){
+                        nextBegin++;
+                    }
+                }
+                if(i == cardList.size()-1 && nextBegin != 0){
+                    i = nextBegin;
+                }
+            }
+        }
+        return res;
     }
 
     @Override

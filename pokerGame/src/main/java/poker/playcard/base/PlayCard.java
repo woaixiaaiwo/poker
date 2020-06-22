@@ -2,8 +2,13 @@ package poker.playcard.base;
 
 import poker.display.CardDisplayer;
 import poker.display.DefaultCardDisplayer;
+import poker.playcard.BoomCard;
+import poker.sequence.CardSequence;
 import poker.sequence.base.Card;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class PlayCard {
@@ -18,6 +23,25 @@ public abstract class PlayCard {
      * @return
      */
     public abstract Boolean greaterThan(PlayCard o);
+
+    public List<List<Card>> searchSuggest(List<Card> cardList){
+        List<Card> copyCardList = new ArrayList<>(cardList);
+        Collections.sort(copyCardList);
+        CardSequence cardSequence = new CardSequence(copyCardList);
+        cardSequence.refreshInfo();
+        List<List<Card>> res = doSearchSuggest(copyCardList,cardSequence);
+        if(this.getClass() != BoomCard.class){
+            res.addAll(BoomCard.searchBoom(cardSequence));
+        }
+        return res;
+    }
+
+    /**
+     * 从指定牌组中搜索提示，即比指定参数大的牌组
+     * @param cardList
+     * @return
+     */
+    public abstract List<List<Card>> doSearchSuggest(List<Card> cardList,CardSequence cardSequence);
 
     /**
      * 获取card列表

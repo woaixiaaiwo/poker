@@ -1,11 +1,13 @@
 package poker.playcard;
 
 import poker.playcard.base.PlayCard;
+import poker.sequence.CardSequence;
 import poker.sequence.base.Card;
 import poker.sequence.enums.CardEnum;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 对子
@@ -20,7 +22,34 @@ public class DoubleCard extends PlayCard {
 
     @Override
     public Boolean greaterThan(PlayCard o) {
-        return null;
+        if(o instanceof DoubleCard){
+            return this.baseNum > ((DoubleCard)o).baseNum;
+        }
+        return false;
+    }
+
+    @Override
+    public List<List<Card>> doSearchSuggest(List<Card> cardList,CardSequence cardSequence) {
+        int i=0;
+        List<List<Card>> res = new ArrayList<>();
+        List<Card> doubleCard = new ArrayList<>();
+        while(i < cardList.size()){
+            Card card = cardList.get(i++);
+            if(card.getCardNumber() > this.baseNum){
+                if(doubleCard.size() > 0){
+                    if(doubleCard.get(0).equals(card.getCardNumber())){
+                        doubleCard.add(card);
+                        res.add(new ArrayList<>(doubleCard));
+                        doubleCard.clear();
+                    }else {
+                        doubleCard.clear();
+                    }
+                }else {
+                    doubleCard.add(card);
+                }
+            }
+        }
+        return res;
     }
 
     @Override

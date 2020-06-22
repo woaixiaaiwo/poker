@@ -10,7 +10,7 @@ public class DefaultCardDisplayer implements CardDisplayer{
     public String display(List<Card> cardList) {
         StringBuilder sb = new StringBuilder();
         for(Card card:cardList){
-            sb.append(card.getCardName());
+            sb.append(card.getCardName()).append(" ");
         }
         return sb.toString();
     }

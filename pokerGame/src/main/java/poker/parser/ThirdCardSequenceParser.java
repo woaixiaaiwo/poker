@@ -37,7 +37,6 @@ public class ThirdCardSequenceParser extends SequenceParser {
             return new ThirdTwoCard(thirdList.get(0),doubleNum);
         }
         //飞机
-        //todo:333444555999这种算不算？
         if(cardList.size() >= 6){
             List<Integer> twoList = sequenceMap.get(2);
             List<Integer> oneList = sequenceMap.get(1);
@@ -63,8 +62,11 @@ public class ThirdCardSequenceParser extends SequenceParser {
                 }
                 List<Integer> otherNum = new ArrayList<>();
                 if(twoList != null){
-                    otherNum.addAll(twoList);
-                    otherNum.addAll(twoList);
+                    for(int i=0;i<twoList.size();i++){
+                        for(int j=0;j<2;j++){
+                            otherNum.add(twoList.get(i));
+                        }
+                    }
                 }
                 if(oneList != null){
                     otherNum.addAll(oneList);

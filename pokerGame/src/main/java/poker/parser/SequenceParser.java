@@ -45,10 +45,8 @@ public abstract class SequenceParser {
         cardList.add(new Card(1));
         cardList.add(new Card(2));
         cardList.add(new Card(2));
-        cardList.add(new Card(2));
-        cardList.add(new Card(9));
-        cardList.add(new Card(9));
-        cardList.add(new Card(9));
+        cardList.add(new Card(3));
+        cardList.add(new Card(3));
         CardSequence cardSequence = new CardSequence(cardList);
         PlayCard playCard = parse(cardSequence);
         System.out.println(playCard.disPlay());

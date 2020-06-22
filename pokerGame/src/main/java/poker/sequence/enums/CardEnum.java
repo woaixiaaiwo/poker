@@ -15,8 +15,8 @@ public enum CardEnum {
     King("K",10),
     Ace("A",11),
     Two("2",12),
-    Joker1("J1",13),
-    Joker2("J2",14);
+    Joker1("小王",13),
+    Joker2("大王",14);
 
     private String cardName;
 
