@@ -85,4 +85,9 @@ public class FlushDouble extends PlayCard {
         }
         return list;
     }
+
+    @Override
+    public String getName() {
+        return "连对~~";
+    }
 }

@@ -60,14 +60,14 @@ public class HandCardSequence extends CountableSequence{
      */
     public List<Card> parsePlayList(String str){
         List<Card> res = new ArrayList<>();
-        char[] chars = str.toCharArray();
+        String[] strs = str.split(" ");
         int i=0,j=0;
         while(j < cardList.size()){
             Card card = cardList.get(j++);
-            if(card.getCardName().equalsIgnoreCase(String.valueOf(chars[i]))){
+            if(card.getCardName().equalsIgnoreCase(strs[i])){
                 res.add(card);
                 i++;
-                if(res.size() == str.length()){
+                if(res.size() == strs.length){
                     return res;
                 }
             }

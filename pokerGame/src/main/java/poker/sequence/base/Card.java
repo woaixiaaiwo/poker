@@ -28,6 +28,24 @@ public class Card implements Comparable<Card>{
         put(14,"J2");
     }};
 
+    private final static Map<Integer,String> CHINESE_MAPPING = new HashMap(){{
+        put(0,"三");
+        put(1,"四");
+        put(2,"五");
+        put(3,"六");
+        put(4,"七");
+        put(5,"八");
+        put(6,"九");
+        put(7,"十");
+        put(8,"勾");
+        put(9,"圈");
+        put(10,"K");
+        put(11,"尖");
+        put(12,"二");
+        put(13,"小王");
+        put(14,"大王");
+    }};
+
     public Card(String cardName, Integer cardNumber) {
         this.cardName = cardName;
         this.cardNumber = cardNumber;
@@ -36,6 +54,10 @@ public class Card implements Comparable<Card>{
     public Card(Integer cardNumber){
         this.cardName = MAPPING.get(cardNumber);
         this.cardNumber = cardNumber;
+    }
+
+    public static String getChineseName(Integer cardNumber){
+        return CHINESE_MAPPING.get(cardNumber);
     }
 
     public String getCardName() {

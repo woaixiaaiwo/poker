@@ -85,6 +85,10 @@ public class Player {
         return displayCard();
     }
 
+    public String getHandCard(){
+        return handCardSequence.displayCard();
+    }
+
     public void searchSyggest(PlayCard currentCard){
 
     }

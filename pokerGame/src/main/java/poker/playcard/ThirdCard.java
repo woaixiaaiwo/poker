@@ -60,4 +60,9 @@ public class ThirdCard extends PlayCard {
         cards.add(new Card(num));
         return cards;
     }
+
+    @Override
+    public String getName() {
+        return "三个"+Card.getChineseName(num);
+    }
 }

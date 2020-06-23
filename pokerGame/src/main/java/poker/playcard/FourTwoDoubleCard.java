@@ -78,4 +78,9 @@ public class FourTwoDoubleCard extends PlayCard {
 
         return list;
     }
+
+    @Override
+    public String getName() {
+        return "四带两对儿";
+    }
 }

@@ -61,6 +61,7 @@ public class GameContext {
          while(!isFinish){
              for(Player user:users){
                  System.out.println("玩家："+user.getName()+"请出牌");
+                 System.out.println("手牌："+user.getHandCard());
                  Scanner scanner = new Scanner(System.in);
                  String commond = scanner.nextLine();
                  String playCard = "";
@@ -74,6 +75,9 @@ public class GameContext {
                          }
                          System.out.println("玩家："+user.getName()+"：");
                          System.out.println("手牌："+playCard);
+                     }else if("no".equals(commond)){
+                         //todo:添加要不起逻辑
+                         //todo:如果当前玩家是出牌玩家，清空场上的出牌记录
                      }else {
                          playCard = user.palyCard(commond, matchInfo);
                          if(playCard != null && !"".equals(playCard)){

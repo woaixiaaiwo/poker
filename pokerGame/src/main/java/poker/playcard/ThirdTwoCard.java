@@ -83,4 +83,9 @@ public class ThirdTwoCard extends PlayCard {
         cards.add(new Card(doubleNum));
         return cards;
     }
+
+    @Override
+    public String getName() {
+        return "三带一对儿";
+    }
 }

@@ -72,4 +72,9 @@ public class Flush  extends PlayCard {
         }
         return list;
     }
+
+    @Override
+    public String getName() {
+        return "顺子~";
+    }
 }

@@ -48,4 +48,9 @@ public class SingleCard extends PlayCard {
         cards.add(new Card(num));
         return cards;
     }
+
+    @Override
+    public String getName() {
+        return Card.getChineseName(num);
+    }
 }

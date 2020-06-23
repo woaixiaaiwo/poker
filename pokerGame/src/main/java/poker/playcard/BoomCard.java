@@ -86,4 +86,12 @@ public class BoomCard extends PlayCard {
         }
         return list;
     }
+
+    @Override
+    public String getName() {
+        if(boomNum == CardEnum.Joker1.getCardNum()){
+            return "王炸！！！";
+        }
+        return "炸弹！";
+    }
 }

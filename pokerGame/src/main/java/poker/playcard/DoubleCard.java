@@ -60,4 +60,9 @@ public class DoubleCard extends PlayCard {
         }
         return list;
     }
+
+    @Override
+    public String getName() {
+        return "对"+Card.getChineseName(baseNum);
+    }
 }

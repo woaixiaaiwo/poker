@@ -71,4 +71,9 @@ public class ThirdOneCard extends PlayCard {
         cards.add(new Card(singleNum));
         return cards;
     }
+
+    @Override
+    public String getName() {
+        return "三带一";
+    }
 }

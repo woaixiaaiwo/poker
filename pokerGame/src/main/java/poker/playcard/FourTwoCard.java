@@ -77,4 +77,9 @@ public class FourTwoCard extends PlayCard {
         list.add(new Card(singleNum));
         return list;
     }
+
+    @Override
+    public String getName() {
+        return "四带二";
+    }
 }

@@ -48,6 +48,8 @@ public abstract class PlayCard {
      */
     public abstract List<Card>  getCardList();
 
+    public abstract String  getName();
+
     public void setCardDisplayer(CardDisplayer cardDisplayer) {
         this.cardDisplayer = cardDisplayer;
     }
@@ -56,7 +58,7 @@ public abstract class PlayCard {
      * 显示牌
      */
     public String disPlay(){
-        return cardDisplayer.display(getCardList());
+        return getName()+"："+cardDisplayer.display(getCardList());
     }
 
 }
