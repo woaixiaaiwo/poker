@@ -4,10 +4,7 @@ import poker.display.CardDisplayer;
 import poker.display.DefaultCardDisplayer;
 import poker.sequence.base.Card;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * 手牌
@@ -61,14 +58,18 @@ public class HandCardSequence extends CountableSequence{
     public List<Card> parsePlayList(String str){
         List<Card> res = new ArrayList<>();
         String[] strs = str.split(" ");
-        int i=0,j=0;
-        while(j < cardList.size()){
-            Card card = cardList.get(j++);
-            if(card.getCardName().equalsIgnoreCase(strs[i])){
-                res.add(card);
-                i++;
-                if(res.size() == strs.length){
-                    return res;
+        List<Card> cards = new ArrayList<>(cardList);
+        for(int i=0;i<strs.length;i++){
+            Iterator<Card> iterator = cards.iterator();
+            while (iterator.hasNext()){
+                Card card = iterator.next();
+                if(card.getCardName().equalsIgnoreCase(strs[i])){
+                    res.add(card);
+                    if(res.size() == strs.length){
+                        return res;
+                    }
+                    iterator.remove();
+                    break;
                 }
             }
         }

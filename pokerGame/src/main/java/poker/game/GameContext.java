@@ -9,6 +9,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+
+/**
+ * todo:把displayer抽象成接口，游戏内显示和玩家显示分开
+ */
 public class GameContext {
 
      private MatchInfo matchInfo;
@@ -63,8 +67,11 @@ public class GameContext {
                  System.out.println("玩家："+user.getName()+"请出牌");
                  System.out.println("手牌："+user.getHandCard());
                  Scanner scanner = new Scanner(System.in);
-                 String commond = scanner.nextLine();
+                 //todo：输入bug
+                 //todo：连对判断
+                 String commond = scanner.next();
                  String playCard = "";
+                 boolean canBeat = true;
                  while(true){
                      commond = scanner.nextLine();
                      if(commond.contains("s")){
@@ -76,15 +83,22 @@ public class GameContext {
                          System.out.println("玩家："+user.getName()+"：");
                          System.out.println("手牌："+playCard);
                      }else if("no".equals(commond)){
-                         //todo:添加要不起逻辑
-                         //todo:如果当前玩家是出牌玩家，清空场上的出牌记录
+                         System.out.println("玩家："+user.getName()+"：");
+                         System.out.println("要不起");
+                         canBeat = false;
+                         break;
                      }else {
+                         if(user == matchInfo.getCurrentPlayer()){
+                             matchInfo.setCurrentSequence(null);
+                             matchInfo.setCurrentPlayer(null);
+                         }
                          playCard = user.palyCard(commond, matchInfo);
                          if(playCard != null && !"".equals(playCard)){
                              break;
                          }
                      }
                  }
+                 if(!canBeat)continue;
                  System.out.println("玩家："+user.getName()+"：");
                  System.out.println("出牌："+matchInfo.getCurrentSequence().disPlay());
                  System.out.println("手牌："+playCard);
