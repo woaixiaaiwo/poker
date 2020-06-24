@@ -39,18 +39,18 @@ public class Player {
             playCardList = handCardSequence.parsePlayList(playstr);
         }catch (Exception e){
             System.out.println("输入的序列在手牌中不存在");
-            return "";
+            return "error";
         }
         try {
             CardSequence cardSequence = new CardSequence(playCardList);
             playCard = SequenceParser.parse(cardSequence);
         }catch (Exception e){
             System.out.println("你出的牌不符合规则");
-            return "";
+            return "error";
         }
         if(matchInfo.getCurrentSequence() != null && !playCard.greaterThan(matchInfo.getCurrentSequence())){
             System.out.println("你出的牌不大于上家");
-            return "";
+            return "error";
         }
         matchInfo.setCurrentPlayer(this);
         matchInfo.setCurrentSequence(playCard);
@@ -95,5 +95,12 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

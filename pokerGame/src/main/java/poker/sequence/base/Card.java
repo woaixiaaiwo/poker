@@ -24,8 +24,8 @@ public class Card implements Comparable<Card>{
         put(10,"K");
         put(11,"A");
         put(12,"2");
-        put(13,"J1");
-        put(14,"J2");
+        put(13,"小王");
+        put(14,"大王");
     }};
 
     private final static Map<Integer,String> CHINESE_MAPPING = new HashMap(){{

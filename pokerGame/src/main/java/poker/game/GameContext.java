@@ -48,7 +48,7 @@ public class GameContext {
                  cardSequence.add(new Card(value.getCardName(),value.getCardNum()));
              }
          }
-         Collections.shuffle(cardSequence);
+        Collections.shuffle(cardSequence);
      }
 
      public void beginContext(){
@@ -68,12 +68,13 @@ public class GameContext {
                  System.out.println("手牌："+user.getHandCard());
                  Scanner scanner = new Scanner(System.in);
                  //todo：输入bug
-                 //todo：连对判断
-                 String commond = scanner.next();
+                 String commond="";
                  String playCard = "";
                  boolean canBeat = true;
                  while(true){
-                     commond = scanner.nextLine();
+                     if (scanner.hasNext()) {
+                         commond = scanner.nextLine();
+                     }
                      if(commond.contains("s")){
                          if("s1".equals(commond)){
                              playCard = user.sort(1);
@@ -93,7 +94,7 @@ public class GameContext {
                              matchInfo.setCurrentPlayer(null);
                          }
                          playCard = user.palyCard(commond, matchInfo);
-                         if(playCard != null && !"".equals(playCard)){
+                         if(!"error".equals(playCard)){
                              break;
                          }
                      }
@@ -105,10 +106,11 @@ public class GameContext {
                  System.out.println("-----------------------------------");
                  if(user.isFinish()){
                      isFinish = true;
+                     break;
                  }
              }
          }
-         System.out.println("玩家："+matchInfo.getCurrentPlayer()+"胜出！");
+         System.out.println("玩家："+matchInfo.getCurrentPlayer().getName()+" 胜出！");
      }
 
     public static void main(String[] args) {
